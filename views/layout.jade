@@ -1,0 +1,19 @@
+include _mixins 
+doctype html 
+html
+	head
+		title Todo Lists
+		+stylesheet_link_tag("style")
+		link(rel="stylesheet" href="https://fonts.googleapis.com/css?family=Montserrat")
+		+javascript_include_tag("vendor/all")
+		+javascript_include_tag("handlebars_templates")
+
+	block content
+
+	+javascript_include_tag("application")
+	+javascript_include_tag("models/todo")
+	+javascript_include_tag("collections/todo_list")
+	+javascript_include_tag("views/nav") 
+	script(type="text/javascript").
+		App.todoList = new TodoList(!{JSON.stringify(todos)});	
+		App.init();

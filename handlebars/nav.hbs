@@ -1,0 +1,25 @@
+<div class="nav_todos">
+	<img src="images/icon_todo.png" alt="Todos_Icon" />
+	<dl>
+		<dd id="nav_todos_heading">All Todos</dd><!--
+		--><dt>{{total_count}}</dt>
+	</dl>
+{{#each all_todos}}
+	<dl>
+		<dd>{{this.Date}}</dd><!--
+		--><dt>{{this.Count}}
+	</dl>
+{{/each}}
+</div>
+<div class="completed_todos">
+	<img src="images/icon_completed.png" alt="Todos_Icon" />
+	<dl>
+		<dd id="completed_todos_heading">Completed</dd><!--
+		--><dt>{{total_completed}}</dt>
+	</dl>
+{{#each completed_todos}}
+<dl>
+	<dd>{{this.Date}}</dd><!--
+	--><dt>{{this.Count}}
+</dl>
+{{/each}}
