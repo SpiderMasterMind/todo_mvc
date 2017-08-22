@@ -1,0 +1,15 @@
+<thead>
+	<th>Add new to do</th>
+	<td></td>
+</thead>
+<tbody>
+{{#each todos}}
+	<tr>
+		<td class="toggle">
+			<input type="checkbox" name="{{Title}}" data-completed="{{Completed}}">
+			<label class="item" for="">{{Title}} - {{Date}}</label>
+		</td>
+		<td class="delete"><img src="images/icon_trash.png" alt="Trash_Icon" /></td>
+	</tr>
+{{/each}}
+</tbody>

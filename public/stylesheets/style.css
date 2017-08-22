@@ -101,19 +101,19 @@ thead td {
 /* ICONS */
 
 .main_table th::before {
-  content: url(images/icon_add.png);
+  content: url(/images/icon_add.png);
   margin-right: 15px;
 }
 
 tr label::before {
-  content: url(images/icon_check_not_complete.png);
+  content: url(/images/icon_check_not_complete.png);
   margin-right: 15px;
   position: relative;
   top: 2px;
 }
 
 .completed::before {
-  content: url(images/icon_complete.png);
+  content: url(/images/icon_complete.png);
   position: relative;
   top: 2px;
 }

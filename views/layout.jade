@@ -13,7 +13,7 @@ html
 	+javascript_include_tag("application")
 	+javascript_include_tag("models/todo")
 	+javascript_include_tag("collections/todo_list")
-	+javascript_include_tag("views/nav") 
+	+javascript_include_tag("views/nav", "views/main") 
 	script(type="text/javascript").
 		App.todoList = new TodoList(!{JSON.stringify(todos)});	
 		App.init();

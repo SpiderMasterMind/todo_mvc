@@ -14,6 +14,14 @@
     "Year": "2016",
     "Description": "",
     "Date": "01/16",
+		"Completed": false
+	}, {
+		"Title": "Truth and wisdom",
+    "Day": "",
+    "Month": "",
+    "Year": "",
+    "Description": "Attain true knowledge",
+    "Date": "No Due Date",
 		"Completed": true
 	}, {
 		"Title": "Truth and wisdom",
@@ -39,13 +47,21 @@
     "Description": "",
     "Date": "03/17",
 		"Completed": true
+	}, {	
+		"Title": "Truth and wisdom",
+    "Day": "",
+    "Month": "",
+    "Year": "",
+    "Description": "Attain true knowledge",
+    "Date": "No Due Date",
+		"Completed": true
 	}, {
-    "Title": "murphy",
+    "Title": "murphyAGAIN!!",
     "Day": "23",
     "Month": "march",
     "Year": "2017",
     "Description": "",
-    "Date": "03/17",
+    "Date": "08/17",
 		"Completed": true
 	}		
 ]
