@@ -6,7 +6,7 @@
 {{#each todos}}
 	<tr>
 		<td class="toggle">
-			<input type="checkbox" name="{{Title}}" data-completed="{{Completed}}">
+			<input type="checkbox" name="{{Title}}" id="{{id}}" data-completed="{{Completed}}">
 			<label class="item" for="">{{Title}} - {{Date}}</label>
 		</td>
 		<td class="delete"><img src="images/icon_trash.png" alt="Trash_Icon" /></td>

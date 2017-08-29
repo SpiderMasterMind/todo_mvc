@@ -1,22 +1,31 @@
 // 3.5 - 4 hours (includes setup)
 // // lost 45 mins ish on grunt handlebars confusion
+// 14:10 Tuesday
+// couldhave some global params to determine where the nav navigation option should stay
+// with conditionals to change them if needed
+// 
 var App = {
 	templates: JST,
 	init: function() {
 		console.log("!");
+		//this.getTodos();
 		this.bindEvents();
 		this.renderNavView();
 		this.renderMainView();
-		//this.getTodos();
 	},
 	//getTodos: function() {
 	//	this.collection = new TodoList([this.todoList]);
-	//},
+//	},
 	bindEvents: function() {
 		_.extend(this, Backbone.Events);
 		this.on("changeDisplayEvent", this.renderMainView.bind(this));
-	//$(window).on("unload", this.setLocalStorage.bind(this));	
+		this.on("renderNav", this.renderNavView.bind(this))
+		//$(window).on("unload", this.setLocalStorage.bind(this));	
 	},
+//	setLocalStorage: function() {
+//		localStorage.setItem("todos", JSON.stringify(this.todoList.toJSON()));
+//		localStorage.setItem("id", JSON.stringify(this.todoList.currentId));
+//	},
 	renderMainView: function(date, showAll) {
 		if (this.mainView) { this.mainView.undelegateEvents(); }
 
@@ -29,10 +38,9 @@ var App = {
 	},
 	renderNavView: function() {
 		if (this.navView) { this.navView.undelegateEvents(); }
-			// todoList comes from passing from layout
+
 		this.navView = new NavView({
 			collection: this.todoList,
-			// only one set of models, so one "pseudo collection" not sure if I should wrP this in a BB collection or not.
 			el: "nav"
 		})
 	},

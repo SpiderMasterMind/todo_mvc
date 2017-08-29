@@ -5,6 +5,8 @@ this["JST"]["main"] = Handlebars.template({"1":function(container,depth0,helpers
 
   return "	<tr>		<td class=\"toggle\">			<input type=\"checkbox\" name=\""
     + alias4(((helper = (helper = helpers.Title || (depth0 != null ? depth0.Title : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Title","hash":{},"data":data}) : helper)))
+    + "\" id=\""
+    + alias4(((helper = (helper = helpers.id || (depth0 != null ? depth0.id : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"id","hash":{},"data":data}) : helper)))
     + "\" data-completed=\""
     + alias4(((helper = (helper = helpers.Completed || (depth0 != null ? depth0.Completed : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"Completed","hash":{},"data":data}) : helper)))
     + "\">			<label class=\"item\" for=\"\">"

@@ -23,8 +23,16 @@ var MainView = Backbone.View.extend({
 		return this;
 	},
 	events: {
+		"click .toggle": "toggleTodoCompletion"
 
 
+	},
+	toggleTodoCompletion: function(event) {
+		event.preventDefault();
+		var clickedId = $(event.target).find("input").attr("id");
+		this.collection.trigger("toggleCompletion", clickedId);
+		App.trigger("changeDisplayEvent");
+		App.trigger("renderNav");
 	},
 	markCompleteTodos: function() {
 		$("[data-completed='true']").next().addClass("completed");
@@ -32,14 +40,32 @@ var MainView = Backbone.View.extend({
 	sortTodosByComplete: function() {
 		
 	},
+	// these should be collection methods
 	returnFilteredCollection: function(date, showAllTodos) {
 		if (date === "All Todos") {
 			return this.collection.toJSON();
 		} else if (date === "Completed") {
-			return this.collection.filter(function(todo) {
-				return todo.get("Completed") === true;
-			}).map(function(todo) { return todo.toJSON() } );
+			return this.returnOnlyCompleted();
+		} else if (showAllTodos) {
+			return this.returnAllTodosFromDate(date);
+		} else if (!showAllTodos) {
+			return this.returnCompletedTodosByDate(date);
 		}
+	},
+	returnOnlyCompleted: function() {
+		return this.collection.filter(function(todo) {
+				return todo.get("Completed") === true;
+		}).map(function(todo) { return todo.toJSON() } );
+	},
+	returnAllTodosFromDate: function(dateStr) {
+		return this.collection.filter(function(todo) {
+			return todo.get("Date") === dateStr;
+		}).map(function(todo) { return todo.toJSON() });
+	},
+	returnCompletedTodosByDate: function(dateStr) {
+		return this.collection.filter(function(todo) {
+			return todo.get("Date") === dateStr && todo.get("Completed") === true;
+		}).map(function(todo) { return todo.toJSON() });
 	},
 
 
