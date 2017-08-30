@@ -2,10 +2,15 @@ extends layout
 
 block content
 	body
-		input
+		input#menu_toggle(type="checkbox")
 		nav
 		main
 			.wrapper
+				.hamburger_toggle
+					label(for='menu-toggle')
+						img(src='images/icon_menu.png', alt='Hamburger Toggle')
+				.info_bar
+				input#add_todo(type='checkbox')
 				table.main_table
 		.background
 				

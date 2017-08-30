@@ -13,11 +13,10 @@ var MainView = Backbone.View.extend({
 			}));
 		} else {
 			this.$el.html(this.template({
-				todos: this.returnFilteredCollection(date, showAllTodos),
+				todos: this.collection.returnFilteredCollection(date, showAllTodos),
 			}));
 		}
 
-		this.sortTodosByComplete();
 		this.markCompleteTodos();
 
 		return this;
@@ -25,48 +24,21 @@ var MainView = Backbone.View.extend({
 	events: {
 		"click .toggle": "toggleTodoCompletion"
 
-
 	},
 	toggleTodoCompletion: function(event) {
+		// ref!
 		event.preventDefault();
 		var clickedId = $(event.target).find("input").attr("id");
+		var currentSelection = $("dl.selection").index();
+		var selectionInAllTodos = $(".selection").parent().hasClass("nav_todos") 
+	// if a completed clicked todo is the last of the group	
 		this.collection.trigger("toggleCompletion", clickedId);
-		App.trigger("changeDisplayEvent");
-		App.trigger("renderNav");
+		App.trigger("renderMain");
+		App.trigger("renderNav", currentSelection, selectionInAllTodos);
+		App.trigger("renderHeading");
 	},
+
 	markCompleteTodos: function() {
 		$("[data-completed='true']").next().addClass("completed");
 	},
-	sortTodosByComplete: function() {
-		
-	},
-	// these should be collection methods
-	returnFilteredCollection: function(date, showAllTodos) {
-		if (date === "All Todos") {
-			return this.collection.toJSON();
-		} else if (date === "Completed") {
-			return this.returnOnlyCompleted();
-		} else if (showAllTodos) {
-			return this.returnAllTodosFromDate(date);
-		} else if (!showAllTodos) {
-			return this.returnCompletedTodosByDate(date);
-		}
-	},
-	returnOnlyCompleted: function() {
-		return this.collection.filter(function(todo) {
-				return todo.get("Completed") === true;
-		}).map(function(todo) { return todo.toJSON() } );
-	},
-	returnAllTodosFromDate: function(dateStr) {
-		return this.collection.filter(function(todo) {
-			return todo.get("Date") === dateStr;
-		}).map(function(todo) { return todo.toJSON() });
-	},
-	returnCompletedTodosByDate: function(dateStr) {
-		return this.collection.filter(function(todo) {
-			return todo.get("Date") === dateStr && todo.get("Completed") === true;
-		}).map(function(todo) { return todo.toJSON() });
-	},
-
-
 });
