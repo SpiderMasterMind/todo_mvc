@@ -6,6 +6,11 @@ var TodoList = Backbone.Collection.extend({
 	},
 	bindEvents: function() {
 		this.on("toggleCompletion", this.toggleCompletedState.bind(this));
+		this.on("delete", this.delete.bind(this));
+	},
+	delete: function(id) {
+		console.log("deleting: ", id);
+		this.remove(id);
 	},
 	toggleCompletedState: function(id) {
 		var clickedTodo = this.get(id);
@@ -16,7 +21,7 @@ var TodoList = Backbone.Collection.extend({
 		// need a rule for rendering Completed if empty
 		// move this to nav view?
 		if (($(".completed_todos").find("dd:contains('" + clickedTodo.toJSON().Date + "')").length === 0) && clickedTodo.get("Completed") === false) {
-			console.log("needs reset")
+			console.log("needs reset") // unless its the last of the 'Completed' heading
 		}
 
 

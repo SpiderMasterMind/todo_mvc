@@ -22,8 +22,24 @@ var MainView = Backbone.View.extend({
 		return this;
 	},
 	events: {
-		"click .toggle": "toggleTodoCompletion"
+		"click .toggle": "toggleTodoCompletion",
+		"click .delete": "deleteTodo",
 
+	},
+	deleteTodo: function(event) {
+		event.preventDefault();
+		event.stopPropagation();
+		if ($(event.target)[0].nodeName === "IMG") {
+			var $e = $(event.target).parent();
+		} else {
+			var $e = $(event.target);
+		}
+		var id = $e.prev().eq(0).find("input").attr("id");
+		console.log("in main: " , id);
+		this.collection.trigger("delete", id);
+		App.trigger("renderMain");
+		App.trigger("renderNav");
+		App.trigger("renderHeading");
 	},
 	toggleTodoCompletion: function(event) {
 		// ref!

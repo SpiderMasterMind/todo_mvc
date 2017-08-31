@@ -97,6 +97,10 @@ thead td {
   padding-right: 10px;
 }
 
+.delete {
+	z-index: 10;
+}
+
 /* MAIN TABLE ICONS AND TEXT STYLES */
 /* ICONS */
 
