@@ -6,30 +6,48 @@
 var App = {
 	templates: JST,
 	init: function() {
+		this.todoList;
 		this.date = "All Todos";
 		this.index = 1;
 		this.showAll = true;
-		//this.getTodos();
+		this.getTodos();
 		this.bindEvents();
 		this.renderNavView();
 		this.renderMainView();
 		this.renderHeading();
 	},
-	//getTodos: function() {
-	//	this.collection = new TodoList([this.todoList]);
-//	},
+	getTodos: function() {
+		this.todoList = new TodoList(localStorage.getItem("todos"));
+	},
 	bindEvents: function() {
 		_.extend(this, Backbone.Events);
 		this.on("renderMain", this.renderMainView.bind(this));
 		this.on("renderNav", this.renderNavView.bind(this));
-
 		this.on("renderHeading", this.renderHeading.bind(this));
-		//$(window).on("unload", this.setLocalStorage.bind(this));	
+		this.on("renderModal", this.renderModal.bind(this));
+		this.on("saveTodo", this.saveTodo.bind(this));
+		$(window).on("unload", this.setLocalStorage.bind(this));	
 	},
-//	setLocalStorage: function() {
-//		localStorage.setItem("todos", JSON.stringify(this.todoList.toJSON()));
-//		localStorage.setItem("id", JSON.stringify(this.todoList.currentId));
-//	},
+	setLocalStorage: function() {
+		localStorage.setItem("todos", JSON.stringify(this.todoList.toJSON()));
+	},
+	saveTodo: function(todoObj) {
+		this.todoList.add(new Todo(todoObj));
+	},
+	renderModal: function(todoId) {
+		if (this.modalView) { this.modalView.undelegateEvents(); }
+		
+		if (todoId) {
+			this.modalView = new ModalView({
+				el: ".background",
+				model: this.todoList.get(todoId),
+			})
+		} else {
+			this.modalView = new ModalView({
+				el: ".background",
+			})
+		}
+	},
 	renderMainView: function() {
 		if (this.mainView) { this.mainView.undelegateEvents(); }
 

@@ -287,7 +287,7 @@ textarea {
   left: 0;
   z-index: 1;
   content: "";
-  background: rgba(0,0,0,0);
+  background: rgba(0,0,0,0.5);
 }
 
 .show-modal { 

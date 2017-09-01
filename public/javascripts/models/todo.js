@@ -1,7 +1,11 @@
 var Todo = Backbone.Model.extend({
 	initialize: function() {
-		this.set("id", this.collection.lastId);
-		this.collection.lastId = this.collection.lastId + 1;
+		if (!App.todoList) {
+			App.todoList.lastId = 0;
+		}
+
+		this.set("id", last);
+		App.todoList.lastId = App.todoList.lastId + 1;
 		this.processDate();
 	},
 	defaults: function() {

@@ -24,7 +24,17 @@ var MainView = Backbone.View.extend({
 	events: {
 		"click .toggle": "toggleTodoCompletion",
 		"click .delete": "deleteTodo",
-
+		"click thead th": "addNewTodo",
+		"click .item": "editTodo",
+	},
+	editTodo: function(event) {
+		event.stopPropagation();
+		var id = $(event.target).prev().attr("id");
+		App.trigger("renderModal", id);
+	},
+	addNewTodo: function(event) {
+		event.preventDefault();
+		App.trigger("renderModal");
 	},
 	deleteTodo: function(event) {
 		event.preventDefault();

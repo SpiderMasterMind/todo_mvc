@@ -1,7 +1,6 @@
 var TodoList = Backbone.Collection.extend({
 	model: Todo,	
 	initialize: function() {
-		this.lastId = 0;
 		this.bindEvents();
 	},
 	bindEvents: function() {
